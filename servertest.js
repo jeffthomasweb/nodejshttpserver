@@ -24,8 +24,9 @@ const server = http.createServer(function(request, response) {
     }
 
     switch (urlCleaned) {
-        
-        case "/home":
+
+        //Put this case in {} block since define let reqHeaders
+        case "/home": {
             
             requestOnErrorWriteConsoleFunction();
             let reqHeaders = request.headers.cookie;
@@ -38,6 +39,7 @@ const server = http.createServer(function(request, response) {
             responseOnErrorWriteConsoleFunction();
             response.end(reqHeaders);
             break;
+        }
         
         case "/cookies":
             requestOnErrorWriteConsoleFunction();
@@ -74,6 +76,8 @@ const server = http.createServer(function(request, response) {
                     body.push(chunk);
                 });
                 request.on("end", function() {
+                    //Below is to staisfy JavaScript linter
+                    /*global Buffer*/
                     body = Buffer.concat(body).toString()
                     console.log(body);
                     response.end(body);
