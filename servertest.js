@@ -16,7 +16,8 @@ const server = http.createServer(function(request, response) {
     
     let responseErrorPageFunction = function () {
         return response.end("<p>Invalid address </p>");
-}
+    }
+    
     let urlCleaned = request.url;
 
     if (request.url.endsWith("/")) {
